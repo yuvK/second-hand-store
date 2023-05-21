@@ -1,5 +1,6 @@
 # second-hand-store
 Sela software development course - angular project
+routing. sorting...
 
 
 run ng serve and npm run server on terminal to run app.
