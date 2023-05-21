@@ -1,0 +1,59 @@
+<h2>Add New Product</h2>
+
+<form #newProductForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="product.name" required
+            [ngClass]="{'is-invalid': newProductForm.submitted && newProductForm.controls['name'].invalid, 'is-valid': newProductForm.submitted && newProductForm.controls['name'].valid}">
+        <div *ngIf="newProductForm?.submitted && newProductForm.controls['name']?.invalid" class="invalid-feedback">Name
+            is
+            required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" [(ngModel)]="product.description" required
+            [ngClass]="{'is-invalid': newProductForm.submitted && newProductForm.controls['description'].invalid, 'is-valid': newProductForm.submitted && newProductForm.controls['description'].valid}"></textarea>
+        <div *ngIf="newProductForm?.submitted && newProductForm.controls['description']?.invalid"
+            class="invalid-feedback">
+            Description is required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="picture">Picture:</label>
+        <input type="file" class="form-control" id="picture" name="picture" accept="image/*"
+            (change)="onPictureSelected($event)" required>
+        <input type="hidden" name="picture" [value]="product.picture">
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="product.price" required
+            [ngClass]="{'is-invalid': newProductForm.submitted && newProductForm.controls['price'].invalid, 'is-valid': newProductForm.submitted && newProductForm.controls['price'].valid}">
+        <div *ngIf="newProductForm?.submitted && newProductForm.controls['price']?.invalid" class="invalid-feedback">
+            Price is
+            required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" name="city" [(ngModel)]="product.city" required
+            [ngClass]="{'is-invalid': newProductForm.submitted && newProductForm.controls['city'].invalid, 'is-valid': newProductForm.submitted && newProductForm.controls['city'].valid}">
+        <div *ngIf="newProductForm?.submitted && newProductForm.controls['city']?.invalid" class="invalid-feedback">City
+            Name is
+            required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="product.phoneNumber" required
+            [ngClass]="{'is-invalid': newProductForm.submitted && newProductForm.controls['phone'].invalid, 'is-valid': newProductForm.submitted && newProductForm.controls['phone'].valid}">
+        <div *ngIf="newProductForm?.submitted && newProductForm.controls['phone']?.invalid" class="invalid-feedback">
+            Phone
+            number is required</div>
+
+    </div>
+    <div class="button">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
+    </div>
+</form>

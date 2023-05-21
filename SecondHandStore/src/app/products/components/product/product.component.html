@@ -1,0 +1,11 @@
+<div *ngIf="product">
+    <h1>{{ product.name }}</h1>
+    <img [src]="product.picture" [alt]="product.name" [style.maxWidth.px]="500">
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price | currency:'USD':true }}</p>
+    <p>City: {{ product.city }}</p>
+    <p>Phone: {{ product.phoneNumber}}</p>
+    <p>Publish Date: {{ product.publishDate | date }}</p>
+    <button class="btn btn-primary" (click)="buyProduct(product)">Buy</button>
+    <a (click)="goBack()" href="#">Back to Product List</a>
+</div>

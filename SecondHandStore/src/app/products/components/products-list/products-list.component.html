@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-secondary" (click)="sortType = 'price'; toggleSortDirection()"
+    [ngClass]="{'active': sortType === 'price'}">
+    Sort by price
+    <i class="fa fa-chevron-up" *ngIf="sortType === 'price' && ascending"></i>
+    <i class="fa fa-chevron-down" *ngIf="sortType === 'price' && !ascending"></i>
+</button>
+
+<button type="button" class="btn btn-secondary" (click)="sortType = 'publishDate'; toggleSortDirection()"
+    [ngClass]="{'active': sortType === 'publishDate'}">
+    Sort by publish date
+    <i class="fa fa-chevron-up" *ngIf="sortType === 'publishDate' && ascending"></i>
+    <i class="fa fa-chevron-down" *ngIf="sortType === 'publishDate' && !ascending"></i>
+</button>
+
+
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products | sortProducts: sortType: ascending">
+        <div class="card h-100">
+            <div class="d-flex flex-row" [routerLink]="['/product', product.id]">
+                <a class="card-img align-items-center" [routerLink]="['/product', product.id]">
+                    <img class="card-img-top mr-3 " [src]="product.picture" alt="product.name">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a [routerLink]="['/product', product.id]">{{ product.name }}</a>
+                    </h4>
+                    <h5>{{ product.price | currency:'ILS':true }}</h5>
+                    <h6>Published on: {{product.publishDate | date:'dd/MM/yyyy'}}</h6>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-primary" (click)="deleteProduct(product.id)">Buy</button>
+                <button type="button" class="btn btn-success" (click)="getProductDetails(product.id)">Details</button>
+            </div>
+        </div>
+    </div>
+</div>
